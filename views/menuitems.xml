@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <menuitem
+      id="menuitem_signage_root"
+      action="action_signage_playlist"
+      name="Signage"
+      />
+
+    <menuitem
+      id="menuitem_signage_playlist"
+      action="action_signage_playlist"
+      parent="menuitem_signage_root"
+      sequence="10"
+      />
+
+    <menuitem
+      id="menuitem_sceneview_root"
+      name="Scenes"
+      parent="menuitem_signage_root"
+      action="action_signage_scene"
+      sequence="20"
+      groups="base.group_no_one"
+      />
+    
+  </data>
+</odoo>

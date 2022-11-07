@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <template id="layout" inherit_id="web.frontend_layout" name="Signage Layout" primary="True">
+      <xpath expr="//header" position="replace"></xpath>
+      <xpath expr="//footer" position="replace"></xpath>
+      <xpath expr="//body" position="after">
+        <input id="next_url" t-att-value="next_url" type="hidden" />
+        <input id="duration_seconds" t-att-value="duration_seconds * 1000" type="hidden" />
+        <script>
+          setTimeout(
+            () => {
+              window.location.href = document.getElementById("next_url").value
+            },
+            document.getElementById("duration_seconds").value
+          )
+        </script>
+      </xpath>
+    </template>
+
+  </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_signage_scene_user,access_signage_scene_user,model_signage_scene,base.group_user,1,1,1,1
+access_signage_playlist_user,access_signage_playlist_user,model_signage_playlist,base.group_user,1,1,1,1
+access_screenshot_service_user,access_screenshot_service_user,model_screenshot_service,base.group_user,1,1,1,1
+access_foo_user,access_foo_user,model_foo,base.group_user,1,1,1,1

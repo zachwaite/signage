@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <template id="sceneview_indexed_static" name="Static Scene">
+      <t t-call="signage.layout">
+        <div class="scene-container">
+          <div class="scene-header">
+            <div>
+              <h1 t-esc="scene.header_title" />
+              <h2 t-esc="localtime.strftime('%A, %B %d')" />
+            </div>
+            <a href="/signage">
+              <img t-attf-src="data:image/png;base64, {{ scene.header_icon}}"
+                alt="header icon" 
+                class="scene-header-icon"
+                />
+            </a>
+          </div>
+          <div class="scene-body">
+            <div class="scene-main">
+              <img id="main_content" class="scene-main-content" t-att-src="image_data_uri(scene.static_content)" />
+              <div class="scene-main-footer">
+                <p t-esc="scene.footer_msg" />
+              </div>
+            </div>
+            <div class="scene-index">
+              <ul>
+                <t t-foreach="scene.playlist_id.scene_ids" t-as="s">
+                  <a t-att-href="s.url">
+                    <li t-attf-class="index-item {{ 'active-item' if s.id == scene.id else '' }}">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4">
+                            <img t-attf-src="data:image/png;base64, {{ s.index_icon }}"
+                              alt="index icon"
+                              class="scene-index-icon"
+                              />
+                          </div>
+                          <div class="col-8 pl-0">
+                            <span t-esc="s.name" />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </a>
+                </t>
+              </ul>
+              <div class="container">
+                <div class="row">
+                  <div class="col text-center">
+                    <span t-esc="localtime.strftime('%I:%M %p')" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </t>
+    </template>
+    
+    <template id="sceneview_indexed_data_template" name="Data Driven Scene Template">
+      <t t-call="signage.layout">
+        <div class="scene-container">
+          <div class="scene-header">
+            <div>
+              <h1 t-esc="scene.header_title" />
+              <h2 t-esc="localtime.strftime('%A, %B %d')" />
+            </div>
+            <a href="/signage">
+              <img t-attf-src="data:image/png;base64, {{ scene.header_icon}}"
+                alt="header icon" 
+                class="scene-header-icon"
+                />
+            </a>
+          </div>
+          <div class="scene-body">
+            <div class="scene-main">
+              <div id="main_content" class="scene-main-content">
+              </div>
+              <div class="scene-main-footer">
+                <p t-esc="scene.footer_msg" />
+              </div>
+            </div>
+            <div class="scene-index">
+              <ul>
+                <t t-foreach="scene.playlist_id.scene_ids" t-as="s">
+                  <a t-att-href="s.url">
+                    <li t-attf-class="index-item {{ 'active-item' if s.id == scene.id else '' }}">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-4">
+                            <img t-attf-src="data:image/png;base64, {{ s.index_icon }}"
+                              alt="index icon"
+                              class="scene-index-icon"
+                              />
+                          </div>
+                          <div class="col-8 pl-0">
+                            <span t-esc="s.name" />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </a>
+                </t>
+              </ul>
+              <div class="container">
+                <div class="row">
+                  <div class="col text-center">
+                    <span t-esc="localtime.strftime('%I:%M %p')" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </t>
+    </template>
+
+  </data>
+</odoo>

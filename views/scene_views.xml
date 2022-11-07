@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <record id="view_signage_scene_tree" model="ir.ui.view">
+      <field name="name">view_signage_scene_tree</field>
+      <field name="model">signage.scene</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="sequence" widget="handle" />
+          <field name="name" />
+          <field name="type" />
+          <field name="qweb_view_id" />
+          <field name="duration_seconds" />
+          <field name="url" widget="url" />
+          <field name="next_url" widget="url" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_signage_scene_form" model="ir.ui.view">
+      <field name="name">view_signage_scene_form</field>
+      <field name="model">signage.scene</field>
+      <field name="arch" type="xml">
+        <form string="view_signage_scene_form">
+            <header>
+            </header>
+            <sheet>
+              <group>
+                <group name="scene_left">
+                  <field name="name" />
+                  <field name="type" />
+                  <field name="qweb_view_id" />
+                  <field name="duration_seconds" />
+                  <field name="url" widget="url" />
+                  <field name="next_url" widget="url" />
+                </group>
+                <group name="scene_right">
+                </group>
+             </group>
+             <notebook>
+               <page string="Content"
+                 attrs="{'invisible': [('type', '=', 'data')]}"
+                 >
+                  <field name="static_content" widget="image" />
+               </page>
+               <page string="Data"
+                 attrs="{'invisible': [('type', '=', 'static')]}"
+                 >
+                  <field name="data_model" />
+                  <field name="data_model_domain"
+                    widget="domain" options="{'model': 'data_model'}"
+                    />
+               </page>
+             </notebook>
+           </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_indexed_signage_scene_form" model="ir.ui.view">
+      <field name="name">view_indexed_signage_scene_form</field>
+      <field name="model">signage.scene</field>
+      <field name="inherit_id" ref="view_signage_scene_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//group[@name='scene_right']" position="inside">
+          <field name="header_title" />
+          <field name="header_icon" widget="image" class="avatar_128" />
+          <field name="index_icon" widget="image" class="oe_avatar" />
+          <field name="footer_msg" />
+        </xpath>
+      </field>
+    </record>
+
+    <record id="action_signage_scene" model="ir.actions.act_window">
+      <field name="name">Scenes</field>
+      <field name="res_model">signage.scene</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+  </data>
+</odoo>
